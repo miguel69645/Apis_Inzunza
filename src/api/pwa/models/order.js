@@ -149,9 +149,13 @@ const orderSchema = new mongoose.Schema({
             ],
             pedidos_detalle_ps_info_ad: [
                 {
-                    IdTipoEstatusOK: { type: String },
-                    Actual: { type: String },
-                    Observacion: { type: String },
+                    IdEtiquetaOK: { type: String },
+                    IdEtiqueta: { type: String },
+                    Etiqueta: { type: String },
+                    Valor: { type: String },
+                    IdTipoSeccionOK: { type: String },
+                    Seccion: { type: String },
+                    Secuencia: { type: Number },
                     detail_row: {
                         Activo: { type: String, default: "S" },
                         Borrado: { type: String, default: "N" },
