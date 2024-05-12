@@ -1,5 +1,5 @@
 import orders from '../models/order'
-import {OK, FAIL, BITACORA, DATA, AddMSG} from '../../../api/middlewares/respPWA.handler'
+import {OK, FAIL, BITACORA, DATA, AddMSG} from '../../../middlewares/respPWA.handler'
 
 ////////////////////////////////////////////////////
 // ************* GET SECTION ORDERS ************* //
@@ -12,15 +12,15 @@ export const getOrdersAll = async () => {
     let data = DATA();
 
     try {
-        bitacora.process = 'Extraer todos las ordenes';
+        bitacora.process = 'Extraer todos las orders';
         data.method = 'GET';
         data.api = '/orders';
-        data.process = 'Extraer todos las ordenes de la coleccion de cat_orders';
+        data.process = 'Extraer todos las orders de la coleccion de cat_orders';
 
         const ordersAll = await orders.find().then(order => {
             if (!order) {
                 data.status = 404;
-                data.messageDEV = "La base de datos no tiene ordenes";
+                data.messageDEV = "La base de datos no tiene orders";
                 throw Error(data.messageDEV);
             }
 
@@ -28,7 +28,7 @@ export const getOrdersAll = async () => {
         })
 
         //data.status = 200;
-        data.messageUSR = "La extraccion de las ordenes fue exitosa";
+        data.messageUSR = "La extraccion de las orders fue exitosa";
         data.dataRes = ordersAll;
         bitacora = AddMSG(bitacora, data, 'OK', 200, true);
         return OK(bitacora);
@@ -39,7 +39,7 @@ export const getOrdersAll = async () => {
         if (!data.messageDEV) data.messageDEV = message;
         if (data.dataRes.length === 0) data.dataRes = error;
 
-        data.messageUSR = "La extracion de las ordenes no fue exitosa";
+        data.messageUSR = "La extracion de las orders no fue exitosa";
         bitacora = AddMSG(bitacora, data, 'FAIL');
 
         return FAIL(bitacora);
@@ -56,10 +56,10 @@ export const getOrderOne = async (params) => {
     let data = DATA();
 
     try {
-        bitacora.process = "Extraer una de las ordenes";
+        bitacora.process = "Extraer una de las orders";
         data.method = "GET";
         data.api = "/orders/one";
-        data.process = "Extraer una de las ordenes de la coleccion de cat_orders";
+        data.process = "Extraer una de las orders de la coleccion de cat_orders";
 
         let query = {
             IdInstitutoOK: params.IdInstitutoOK,

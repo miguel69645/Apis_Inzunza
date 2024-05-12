@@ -1,7 +1,7 @@
 import {Router} from 'express';
-import config from '../../../config/config'
+import config from '../../../../config/config'
 //Esta parte de imports crece por cada nuevo router que agregues.
-import ordersRoutes from './orders.routes';
+import institutesRoutes from './institutes.routes';
 
 const routerAPI = (app) => {
 
@@ -10,8 +10,8 @@ const routerAPI = (app) => {
 
     app.use(api, router);
 
-    // Por cada nueva API que agreguemos, esta parte crece.
-    router.use('/pwa/orders', ordersRoutes);
+    // Por cada nueva API que agreguemos, esta parte crece. 
+    router.use('/pwa/institutes', institutesRoutes);
 
     return router;
 };

@@ -1,4 +1,7 @@
 import * as mongoose from 'mongoose';
+import config from '../../../../config/config';
+import obtenerConexion from '../../../../config/connectionsFactory';
+import obtenerModelo from '../../../../config/modelsFactory';
 
 const orderSchema = new mongoose.Schema({
     IdInstitutoOK: {type: String, required: true},
@@ -8,28 +11,29 @@ const orderSchema = new mongoose.Schema({
     IdTipoOrdenOK: {type: String},
     IdRolOK: {type: String},
     IdPersonaOK: {type: String},
-    ordenes_estatus: [
+    estatus: [
         {
+            _id: false,
             IdTipoEstatusOK: {type: String},
             Actual: {type: String},
             Observacion: {type: String},
             detail_row: {
+                _id: false,
                 Activo: {type: String, default: "S"},
                 Borrado: {type: String, default: "N"},
                 detail_row_reg: [
                     {
+                        _id: false,
                         FechaReg: {type: Date, default: Date.now},
                         UsuarioReg: {type: String},
-                        _id: false,
                     },
                 ],
-                _id: false,
             },
-            _id: false,
         },
     ],
-    ordenes_info_ad: [
+    info_ad: [
         {
+            _id: false,
             IdEtiquetaOK: {type: String},
             IdEtiqueta: {type: String, require: true},
             Etiqueta: {type: String, require: true},
@@ -37,22 +41,22 @@ const orderSchema = new mongoose.Schema({
             IdTipoSeccionOK: {type: String, require: true},
             Secuencia: {type: Number, require: true},
             detail_row: {
+                _id: false,
                 Activo: {type: String, default: "S"},
                 Borrado: {type: String, default: "N"},
                 detail_row_reg: [
                     {
+                        _id: false,
                         FechaReg: {type: Date, default: Date.now},
                         UsuarioReg: {type: String},
-                        _id: false,
                     },
                 ],
-                _id: false,
             },
-            _id: false,
         },
     ],
-    ordenes_detalle: [
+    detalle_ps: [
         {
+            _id: false,
             IdProdServOK: {type: String, require: true},
             IdPresentaOK: {type: String, require: true},
             DesPresentaPS: {type: String},
@@ -63,125 +67,141 @@ const orderSchema = new mongoose.Schema({
             MontoUniIVA: {type: Number},
             SubTotalSinIVA: {type: Number},
             SubTotalConIVA: {type: Number},
-            pedidos_detalle_ps_estatus_f: [
+            estatus: [
                 {
+                    _id: false,
                     IdTipoEstatusOK: {type: String},
                     Actual: {type: String},
                     Observacion: {type: String},
                     detail_row: {
+                        _id: false,
                         Activo: {type: String, default: "S"},
                         Borrado: {type: String, default: "N"},
                         detail_row_reg: [
                             {
+                                _id: false,
                                 FechaReg: {type: Date, default: Date.now},
                                 UsuarioReg: {type: String},
-                                _id: false,
                             },
                         ],
-                        _id: false,
                     },
-                    _id: false,
                 },
             ],
-            pedidos_detalle_ps_estatus_v: [
+            info_ad: [
                 {
-                    IdTipoEstatusOK: {type: String},
-                    Actual: {type: String},
-                    Observacion: {type: String},
+                    _id: false,
+                    IdEtiquetaOK: {type: String},
+                    IdEtiqueta: {type: String},
+                    Etiqueta: {type: String},
+                    Valor: {type: String},
+                    IdTipoSeccionOK: {type: String},
+                    Seccion: {type: String},
+                    Secuencia: {type: Number},
                     detail_row: {
+                        _id: false,
                         Activo: {type: String, default: "S"},
                         Borrado: {type: String, default: "N"},
                         detail_row_reg: [
                             {
+                                _id: false,
                                 FechaReg: {type: Date, default: Date.now},
                                 UsuarioReg: {type: String},
-                                _id: false,
                             },
                         ],
-                        _id: false,
                     },
-                    _id: false,
                 },
             ],
-            pedidos_detalle_ps_estatus_u: [
+            paquete: [
                 {
-                    IdTipoEstatusOK: {type: String},
-                    Actual: {type: String},
-                    Observacion: {type: String},
+                    _id: false,
+                    idPresentaOK: {type: String},
+                    DesPresenta: {type: String},
+                    Cantidad: {type: Number},
+                    Precio: {type: Number},
                     detail_row: {
+                        _id: false,
                         Activo: {type: String, default: "S"},
                         Borrado: {type: String, default: "N"},
                         detail_row_reg: [
                             {
+                                _id: false,
                                 FechaReg: {type: Date, default: Date.now},
                                 UsuarioReg: {type: String},
-                                _id: false,
                             },
                         ],
-                        _id: false,
                     },
-                    _id: false,
-                },
+                }
             ],
-            pedidos_detalle_ps_estatus_p: [
-                {
-                    IdTipoEstatusOK: {type: String},
-                    Actual: {type: String},
-                    Observacion: {type: String},
-                    detail_row: {
-                        Activo: {type: String, default: "S"},
-                        Borrado: {type: String, default: "N"},
-                        detail_row_reg: [
-                            {
-                                FechaReg: {type: Date, default: Date.now},
-                                UsuarioReg: {type: String},
-                                _id: false,
-                            },
-                        ],
+            detail_row: {
+                _id: false,
+                Activo: {type: String, default: "S"},
+                Borrado: {type: String, default: "N"},
+                detail_row_reg: [
+                    {
                         _id: false,
+                        FechaReg: {type: Date, default: Date.now},
+                        UsuarioReg: {type: String},
                     },
-                    _id: false,
-                },
-            ],
-            pedidos_detalle_ps_info_ad: [
-                {
-                    IdTipoEstatusOK: {type: String},
-                    Actual: {type: String},
-                    Observacion: {type: String},
-                    detail_row: {
-                        Activo: {type: String, default: "S"},
-                        Borrado: {type: String, default: "N"},
-                        detail_row_reg: [
-                            {
-                                FechaReg: {type: Date, default: Date.now},
-                                UsuarioReg: {type: String},
-                                _id: false,
-                            },
-                        ],
-                        _id: false,
-                    },
-                    _id: false,
-                },
-            ],
-            _id: false,
+                ],
+            },
         },
     ],
+    forma_pago: [
+        {
+            _id: false,
+            IdTipoPagoOK: {type: String, require: true},
+            MontoPagado: {type: Number},
+            MontoRecibido: {type: Number},
+            MontoDevuelto: {type: Number},
+            info_ad: [
+                {
+                    _id: false,
+                    Etiqueta: {type: String},
+                    Valor: {type: String},
+                    IdSeccionOK: {type: String},
+                    Seccion: {type: String},
+                    Secuencia: {type: Number},
+                    detail_row: {
+                        _id: false,
+                        Activo: {type: String, default: "S"},
+                        Borrado: {type: String, default: "N"},
+                        detail_row_reg: [
+                            {
+                                _id: false,
+                                FechaReg: {type: Date, default: Date.now},
+                                UsuarioReg: {type: String},
+                            },
+                        ],
+                    },
+                }
+            ]
+        }
+    ],
     detail_row: {
+        _id: false,
         Activo: {type: String, default: "S"},
         Borrado: {type: String, default: "N"},
         detail_row_reg: [
             {
+                _id: false,
                 FechaReg: {type: Date, default: Date.now},
                 UsuarioReg: {type: String},
-                _id: false,
             },
         ],
-        _id: false,
     },
 }, {versionKey: false});
 
-export default mongoose.model(
+const dbName = config.DATABASE;
+const dbCluster = config.CLUSTER;
+
+const conn = obtenerConexion(dbName, dbCluster);
+
+const model = obtenerModelo(
     'cat_orders',
     orderSchema,
-    'cat_orders'
+    conn,
+    dbName,
+    dbCluster
 );
+
+export default model;

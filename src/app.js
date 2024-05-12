@@ -2,8 +2,11 @@ import express from 'express';
 import morgan from 'morgan';
 import cors from 'cors';
 // Imports Routes
-import routesOrdersV1 from './api/v1/routes/index';
-import routesOrdersPWA from './api/pwa/routes/index';
+import routesOrdersPWA from './api/pwa/orders/routes/index';
+import routesLabelsPWA from './api/pwa/labels/routes/index';
+import routesInstitutesPWA from './api/pwa/institutes/routes/index';
+import routesProductsPWA from './api/pwa/products/routes/index';
+import routesPersonsPWA from './api/pwa/persons/routes/index';
 
 // Config para variables de entorno
 import config from './config/config';
@@ -37,8 +40,11 @@ app.get('/DrFIC', (req, res) => {
 })
 
 // Routes
-routesOrdersV1(app);
 routesOrdersPWA(app);
+routesLabelsPWA(app);
+routesInstitutesPWA(app);
+routesProductsPWA(app);
+routesPersonsPWA(app);
 
 // Export App
 export default app;
