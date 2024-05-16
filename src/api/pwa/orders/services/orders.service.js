@@ -300,13 +300,13 @@ export const UpdatePatchOneOrderMethod = async (bitacora, IdInstitutoOK, IdNegoc
                     );
 
                     if (!orderUpdated) {
-                        console.error("No se encontró un documento para actualizar con ese ID,", IdOrdenOK);
+                        //console.error("No se encontró un documento para actualizar con ese ID,", IdOrdenOK);
                         data.status = 400;
                         data.messageDEV = 'La actualización de un subdocumento de la orden NO fue exitosa.';
                         throw new Error(data.messageDEV);
                     }
                 } catch (error) {
-                    console.error(error);
+                    //console.error(error);
                     data.status = 400;
                     data.messageDEV = 'La Actualizacion de un Subdocumento de la orden NO fue exitosa.';
                     throw Error(data.messageDEV);
@@ -319,7 +319,7 @@ export const UpdatePatchOneOrderMethod = async (bitacora, IdInstitutoOK, IdNegoc
         bitacora = AddMSG(bitacora, data, 'OK', 201, true);
         return OK(bitacora);
     } catch (error) {
-        console.error(error);
+        //console.error(error);
         if (!data.status) data.status = error.statusCode;
         let {message} = error;
         if (!data.messageDEV) data.messageDEV = message;

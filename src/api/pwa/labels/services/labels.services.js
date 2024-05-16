@@ -28,7 +28,7 @@ export const GetAllLabels = async () => {
         data.dataRes = allLabels;
 
         bitacora = AddMSG(bitacora, data, "OK", 200, true);
-        console.log("exito")
+        //console.log("exito")
 
         return OK(bitacora);
     } catch (error) {

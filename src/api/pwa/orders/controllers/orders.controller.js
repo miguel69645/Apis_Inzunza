@@ -85,7 +85,7 @@ export const deleteOrders = async (req, res, next) => {
 export const UpdatePatchOneOrder = async (req, res, next) => {
     try {
         const {IdInstitutoOK, IdNegocioOK, IdOrdenOK} = req.query;
-        console.log(req.body);
+        //console.log(req.body);
         const updateData = req.body;
         const orderUpdate = await ordersServices.UpdatePatchOneOrder(IdInstitutoOK, IdNegocioOK, IdOrdenOK, updateData);
         if (orderUpdate) {

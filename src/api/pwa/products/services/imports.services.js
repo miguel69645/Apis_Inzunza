@@ -59,13 +59,13 @@ export const UpdateProductMethod = async (bitacora, params, updateData) => {
                     );
 
                     if (!productoUpdated) {
-                        console.error("No se encontró un documento para actualizar con ese ID,", IdProdServOK);
+                        //console.error("No se encontró un documento para actualizar con ese ID,", IdProdServOK);
                         data.status = 400;
                         data.messageDEV = 'La Actualización de un Subdocumento del producto NO fue exitoso.';
                         throw new Error(data.messageDEV);
                     }
                 } catch (error) {
-                    console.error(error);
+                    //console.error(error);
                     data.status = 400;
                     data.messageDEV = 'La Actualizacion de un Subdocumento del producto NO fue exitoso.';
                     throw Error(data.messageDEV);
@@ -78,7 +78,7 @@ export const UpdateProductMethod = async (bitacora, params, updateData) => {
         bitacora = AddMSG(bitacora, data, 'OK', 201, true);
         return OK(bitacora);
     } catch (error) {
-        console.error(error);
+        //console.error(error);
         if (!data.status) data.status = error.statusCode;
         let {message} = error;
         if (!data.messageDEV) data.messageDEV = message;
