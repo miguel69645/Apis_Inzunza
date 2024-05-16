@@ -77,3 +77,22 @@ export const deleteOrders = async (req, res, next) => {
         next(error)
     }
 }
+
+/////////////////////////////////////////////////////
+// ************ PATCH SECTION ORDERS ************* //
+/////////////////////////////////////////////////////
+
+export const UpdatePatchOneOrder = async (req, res, next) => {
+    try {
+        const {IdInstitutoOK, IdNegocioOK, IdOrdenOK} = req.query;
+        console.log(req.body);
+        const updateData = req.body;
+        const orderUpdate = await ordersServices.UpdatePatchOneOrder(IdInstitutoOK, IdNegocioOK, IdOrdenOK, updateData);
+        if (orderUpdate) {
+            orderUpdate.session = null;
+            return res.status(orderUpdate.status).json(orderUpdate);
+        }
+    } catch (error) {
+        next(error);
+    }
+};

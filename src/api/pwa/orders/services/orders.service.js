@@ -258,3 +258,77 @@ export const deleteOrders = async (params) => {
         //Haya o no haya error se ejecuta el finally
     }
 };
+
+/////////////////////////////////////////////////////
+// ************ PATCH SECTION ORDERS ************* //
+/////////////////////////////////////////////////////
+
+export const UpdatePatchOneOrder = async (IdInstitutoOK, IdNegocioOK, IdOrdenOK, updateData) => {
+    let bitacora = BITACORA();
+    let response = UpdatePatchOneOrderMethod(bitacora, IdInstitutoOK, IdNegocioOK, IdOrdenOK, updateData);
+    return response;
+};
+
+export const UpdatePatchOneOrderMethod = async (bitacora, IdInstitutoOK, IdNegocioOK, IdOrdenOK, updateData) => {
+    let data = DATA();
+    try {
+        bitacora.process = 'Modificar una orden';
+        data.process = 'Modificar una orden';
+        data.method = 'PATCH';
+        data.api = '/one';
+
+        let orderUpdated = null;
+
+        // Encuentra el documento principal usando IdInstitutoOK, IdNegocioOK e IdOrdenOK
+        const filter = {
+            IdInstitutoOK: IdInstitutoOK,
+            IdNegocioOK: IdNegocioOK,
+            IdOrdenOK: IdOrdenOK
+        };
+
+        for (const key in updateData) {
+            if (updateData.hasOwnProperty(key)) {
+                const value = updateData[key];
+
+                const updateQuery = {$set: {[key]: value}};
+
+                try {
+                    orderUpdated = await orders.findOneAndUpdate(
+                        filter,
+                        updateQuery,
+                        {new: true}
+                    );
+
+                    if (!orderUpdated) {
+                        console.error("No se encontró un documento para actualizar con ese ID,", IdOrdenOK);
+                        data.status = 400;
+                        data.messageDEV = 'La actualización de un subdocumento de la orden NO fue exitosa.';
+                        throw new Error(data.messageDEV);
+                    }
+                } catch (error) {
+                    console.error(error);
+                    data.status = 400;
+                    data.messageDEV = 'La Actualizacion de un Subdocumento de la orden NO fue exitosa.';
+                    throw Error(data.messageDEV);
+                }
+            }
+        }
+
+        data.messageUSR = 'La modificación de los subdocumentos de orden SI fue exitosa.';
+        data.dataRes = orderUpdated;
+        bitacora = AddMSG(bitacora, data, 'OK', 201, true);
+        return OK(bitacora);
+    } catch (error) {
+        console.error(error);
+        if (!data.status) data.status = error.statusCode;
+        let {message} = error;
+        if (!data.messageDEV) data.messageDEV = message;
+        if (data.dataRes.length === 0) data.dataRes = error;
+        data.messageUSR =
+            'La modificación de la orden NO fue exitosa.' +
+            '\n' +
+            'Any operations that already occurred as part of this transaction will be rolled back.';
+        bitacora = AddMSG(bitacora, data, 'FAIL');
+        return FAIL(bitacora);
+    }
+};

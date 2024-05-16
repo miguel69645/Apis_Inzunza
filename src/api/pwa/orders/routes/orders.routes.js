@@ -10,6 +10,8 @@ router.get("/", ordersController.getOrdersAll);
 
 router.get("/one?", ordersController.getOrderOne);
 
+router.patch('/one', ordersController.UpdatePatchOneOrder);
+
 // POST
 router.post("/", ordersController.addOrders);
 
