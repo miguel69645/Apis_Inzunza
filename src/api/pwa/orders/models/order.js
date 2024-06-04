@@ -91,7 +91,6 @@ const orderSchema = new mongoose.Schema({
                 {
                     _id: false,
                     IdEtiquetaOK: {type: String},
-                    IdEtiqueta: {type: String},
                     Etiqueta: {type: String},
                     Valor: {type: String},
                     IdTipoSeccionOK: {type: String},
@@ -220,96 +219,126 @@ const orderSchema = new mongoose.Schema({
                     ]
                 }
             ],
-            cliente: {
-                _id: false,
-                IdUsuarioOK: {type: String},
-                IdPersonaOK: {type: String},
-                Usuario: {type: String},
-                Alias: {type: String},
-                Nombre: {type: String},
-                ApParterno: {type: String},
-                ApMaterno: {type: String},
-                FullUserName: {type: String},
-                RFC: {type: String},
-                CURP: {type: String},
-                Sexo: {type: String},
-                IdTipoPersonaOK: {type: String},
-                FechaNac: {type: String},
-                IdTipoEstatusOK: {type: String},
-                IdRolActualOK: {type: String},
-                IdRolPrincipalOK: {type: String},
-                FotoPerfil: {type: String},
-                Email: {type: String},
-                TelMovil: {type: String},
-            },
-            vendedor: {
-                _id: false,
-                IdUsuarioOK: {type: String},
-                IdPersonaOK: {type: String},
-                Usuario: {type: String},
-                Alias: {type: String},
-                Nombre: {type: String},
-                ApParterno: {type: String},
-                ApMaterno: {type: String},
-                FullUserName: {type: String},
-                RFC: {type: String},
-                CURP: {type: String},
-                Sexo: {type: String},
-                IdTipoPersonaOK: {type: String},
-                FechaNac: {type: String},
-                IdTipoEstatusOK: {type: String},
-                IdRolActualOK: {type: String},
-                IdRolPrincipalOK: {type: String},
-                FotoPerfil: {type: String},
-                Email: {type: String},
-                TelMovil: {type: String},
-            },
-            envios: [
+        }
+    ],
+    cliente: {
+        _id: false,
+        IdUsuarioOK: {type: String},
+        IdPersonaOK: {type: String},
+        Usuario: {type: String},
+        Alias: {type: String},
+        Nombre: {type: String},
+        ApParterno: {type: String},
+        ApMaterno: {type: String},
+        FullUserName: {type: String},
+        RFC: {type: String},
+        CURP: {type: String},
+        Sexo: {type: String},
+        IdTipoPersonaOK: {type: String},
+        FechaNac: {type: String},
+        IdTipoEstatusOK: {type: String},
+        IdRolActualOK: {type: String},
+        IdRolPrincipalOK: {type: String},
+        FotoPerfil: {type: String},
+        Email: {type: String},
+        TelMovil: {type: String},
+    },
+    vendedor: {
+        _id: false,
+        IdUsuarioOK: {type: String},
+        IdPersonaOK: {type: String},
+        Usuario: {type: String},
+        Alias: {type: String},
+        Nombre: {type: String},
+        ApParterno: {type: String},
+        ApMaterno: {type: String},
+        FullUserName: {type: String},
+        RFC: {type: String},
+        CURP: {type: String},
+        Sexo: {type: String},
+        IdTipoPersonaOK: {type: String},
+        FechaNac: {type: String},
+        IdTipoEstatusOK: {type: String},
+        IdRolActualOK: {type: String},
+        IdRolPrincipalOK: {type: String},
+        FotoPerfil: {type: String},
+        Email: {type: String},
+        TelMovil: {type: String},
+    },
+    envios: [
+        {
+            _id: false,
+            IdDomicilioOK: {type: String},
+            IdPaqueteriaOK: {type: String},
+            IdTipoMetodoEnvio: {type: String},
+            CostoEnvio: {type: Number},
+            info_ad: [
                 {
                     _id: false,
-                    IdDomicilioOK: {type: String},
-                    IdPaqueteriaOK: {type: String},
-                    IdTipoMetodoEnvio: {type: String},
-                    CostoEnvio: {type: Number},
-                    info_ad: [
-                        {
-                            _id: false,
-                            IdEtiquetaOK: {type: String},
-                            IdEtiqueta: {type: String},
-                            Etiqueta: {type: String},
-                            Valor: {type: String},
-                            IdTipoSeccionOK: {type: String},
-                            Secuencia: {type: Number},
-                            detail_row: {
+                    IdEtiquetaOK: {type: String},
+                    IdEtiqueta: {type: String},
+                    Etiqueta: {type: String},
+                    Valor: {type: String},
+                    IdTipoSeccionOK: {type: String},
+                    Secuencia: {type: Number},
+                    detail_row: {
+                        _id: false,
+                        Activo: {type: String, default: "S"},
+                        Borrado: {type: String, default: "N"},
+                        detail_row_reg: [
+                            {
                                 _id: false,
-                                Activo: {type: String, default: "S"},
-                                Borrado: {type: String, default: "N"},
-                                detail_row_reg: [
-                                    {
-                                        _id: false,
-                                        FechaReg: {type: Date, default: Date.now},
-                                        UsuarioReg: {type: String},
-                                    },
-                                ],
+                                FechaReg: {type: Date, default: Date.now},
+                                UsuarioReg: {type: String},
                             },
-                        }
-                    ],
-                    productos: [
+                        ],
+                    },
+                }
+            ],
+            productos: [
+                {
+                    _id: false,
+                    IdProdServOK: {type: String},
+                    IdPresentaOK: {type: String},
+                    DesProdServ: {type: String},
+                    DesPresenta: {type: String},
+                    CantidadPed: {type: Number},
+                    CantidadEnt: {type: Number},
+                }
+            ],
+            estatus: [
+                {
+                    _id: false,
+                    IdTipoEstatusOK: {type: String},
+                    Actual: {type: String},
+                    Observacion: {type: String},
+                    detail_row: {
+                        _id: false,
+                        Activo: {type: String, default: "S"},
+                        Borrado: {type: String, default: "N"},
+                        detail_row_reg: [
+                            {
+                                _id: false,
+                                FechaReg: {type: Date, default: Date.now},
+                                UsuarioReg: {type: String},
+                            },
+                        ],
+                    },
+                }
+            ],
+            rastreos: [
+                {
+                    _id: false,
+                    NumeroGuia: {type: String},
+                    IdRepartidorOK: {type: String},
+                    NombreRepartidor: {type: String},
+                    Alias: {type: String},
+                    seguimiento: [
                         {
                             _id: false,
-                            IdProdServOK: {type: String},
-                            IdPresentaOK: {type: String},
-                            DesProdServ: {type: String},
-                            DesPresenta: {type: String},
-                            CantidadPed: {type: Number},
-                            CantidadEnt: {type: Number},
-                        }
-                    ],
-                    estatus: [
-                        {
-                            _id: false,
-                            IdTipoEstatusOK: {type: String},
-                            Actual: {type: String},
+                            Ubicacion: {type: String},
+                            DesUbicacion: {type: String},
+                            Referencias: {type: String},
                             Observacion: {type: String},
                             detail_row: {
                                 _id: false,
@@ -324,37 +353,7 @@ const orderSchema = new mongoose.Schema({
                                 ],
                             },
                         }
-                    ],
-                    rastreos: [
-                        {
-                            _id: false,
-                            NumeroGuia: {type: String},
-                            IdRepartidorOK: {type: String},
-                            NombreRepartidor: {type: String},
-                            Alias: {type: String},
-                            seguimiento: [
-                                {
-                                    _id: false,
-                                    Ubicacion: {type: String},
-                                    DesUbicacion: {type: String},
-                                    Referencias: {type: String},
-                                    Observacion: {type: String},
-                                    detail_row: {
-                                        _id: false,
-                                        Activo: {type: String, default: "S"},
-                                        Borrado: {type: String, default: "N"},
-                                        detail_row_reg: [
-                                            {
-                                                _id: false,
-                                                FechaReg: {type: Date, default: Date.now},
-                                                UsuarioReg: {type: String},
-                                            },
-                                        ],
-                                    },
-                                }
-                            ]
-                        }
-                    ],
+                    ]
                 }
             ],
         }
