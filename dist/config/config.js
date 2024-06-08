@@ -1,6 +1,13 @@
-import dotenv from 'dotenv';
-dotenv.config();
-export default {
+"use strict";
+
+var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports["default"] = void 0;
+var _dotenv = _interopRequireDefault(require("dotenv"));
+_dotenv["default"].config();
+var _default = exports["default"] = {
   HOST: process.env.HOST,
   PORT: process.env.PORT,
   URL_BASE: process.env.URL_BASE,

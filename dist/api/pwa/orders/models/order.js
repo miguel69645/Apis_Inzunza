@@ -1,8 +1,18 @@
-import * as mongoose from 'mongoose';
-import config from '../../../../config/config';
-import obtenerConexion from '../../../../config/connectionsFactory';
-import obtenerModelo from '../../../../config/modelsFactory';
-const orderSchema = new mongoose.Schema({
+"use strict";
+
+var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
+var _typeof = require("@babel/runtime/helpers/typeof");
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports["default"] = void 0;
+var mongoose = _interopRequireWildcard(require("mongoose"));
+var _config = _interopRequireDefault(require("../../../../config/config"));
+var _connectionsFactory = _interopRequireDefault(require("../../../../config/connectionsFactory"));
+var _modelsFactory = _interopRequireDefault(require("../../../../config/modelsFactory"));
+function _getRequireWildcardCache(e) { if ("function" != typeof WeakMap) return null; var r = new WeakMap(), t = new WeakMap(); return (_getRequireWildcardCache = function _getRequireWildcardCache(e) { return e ? t : r; })(e); }
+function _interopRequireWildcard(e, r) { if (!r && e && e.__esModule) return e; if (null === e || "object" != _typeof(e) && "function" != typeof e) return { "default": e }; var t = _getRequireWildcardCache(r); if (t && t.has(e)) return t.get(e); var n = { __proto__: null }, a = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var u in e) if ("default" !== u && {}.hasOwnProperty.call(e, u)) { var i = a ? Object.getOwnPropertyDescriptor(e, u) : null; i && (i.get || i.set) ? Object.defineProperty(n, u, i) : n[u] = e[u]; } return n["default"] = e, t && t.set(e, n), n; }
+var orderSchema = new mongoose.Schema({
   IdInstitutoOK: {
     type: String,
     required: true
@@ -43,17 +53,17 @@ const orderSchema = new mongoose.Schema({
       _id: false,
       Activo: {
         type: String,
-        default: "S"
+        "default": "S"
       },
       Borrado: {
         type: String,
-        default: "N"
+        "default": "N"
       },
       detail_row_reg: [{
         _id: false,
         FechaReg: {
           type: Date,
-          default: Date.now
+          "default": Date.now
         },
         UsuarioReg: {
           type: String
@@ -90,17 +100,17 @@ const orderSchema = new mongoose.Schema({
       _id: false,
       Activo: {
         type: String,
-        default: "S"
+        "default": "S"
       },
       Borrado: {
         type: String,
-        default: "N"
+        "default": "N"
       },
       detail_row_reg: [{
         _id: false,
         FechaReg: {
           type: Date,
-          default: Date.now
+          "default": Date.now
         },
         UsuarioReg: {
           type: String
@@ -157,17 +167,17 @@ const orderSchema = new mongoose.Schema({
         _id: false,
         Activo: {
           type: String,
-          default: "S"
+          "default": "S"
         },
         Borrado: {
           type: String,
-          default: "N"
+          "default": "N"
         },
         detail_row_reg: [{
           _id: false,
           FechaReg: {
             type: Date,
-            default: Date.now
+            "default": Date.now
           },
           UsuarioReg: {
             type: String
@@ -199,17 +209,17 @@ const orderSchema = new mongoose.Schema({
         _id: false,
         Activo: {
           type: String,
-          default: "S"
+          "default": "S"
         },
         Borrado: {
           type: String,
-          default: "N"
+          "default": "N"
         },
         detail_row_reg: [{
           _id: false,
           FechaReg: {
             type: Date,
-            default: Date.now
+            "default": Date.now
           },
           UsuarioReg: {
             type: String
@@ -235,17 +245,17 @@ const orderSchema = new mongoose.Schema({
         _id: false,
         Activo: {
           type: String,
-          default: "S"
+          "default": "S"
         },
         Borrado: {
           type: String,
-          default: "N"
+          "default": "N"
         },
         detail_row_reg: [{
           _id: false,
           FechaReg: {
             type: Date,
-            default: Date.now
+            "default": Date.now
           },
           UsuarioReg: {
             type: String
@@ -257,17 +267,17 @@ const orderSchema = new mongoose.Schema({
       _id: false,
       Activo: {
         type: String,
-        default: "S"
+        "default": "S"
       },
       Borrado: {
         type: String,
-        default: "N"
+        "default": "N"
       },
       detail_row_reg: [{
         _id: false,
         FechaReg: {
           type: Date,
-          default: Date.now
+          "default": Date.now
         },
         UsuarioReg: {
           type: String
@@ -311,17 +321,17 @@ const orderSchema = new mongoose.Schema({
         _id: false,
         Activo: {
           type: String,
-          default: "S"
+          "default": "S"
         },
         Borrado: {
           type: String,
-          default: "N"
+          "default": "N"
         },
         detail_row_reg: [{
           _id: false,
           FechaReg: {
             type: Date,
-            default: Date.now
+            "default": Date.now
           },
           UsuarioReg: {
             type: String
@@ -569,17 +579,17 @@ const orderSchema = new mongoose.Schema({
         _id: false,
         Activo: {
           type: String,
-          default: "S"
+          "default": "S"
         },
         Borrado: {
           type: String,
-          default: "N"
+          "default": "N"
         },
         detail_row_reg: [{
           _id: false,
           FechaReg: {
             type: Date,
-            default: Date.now
+            "default": Date.now
           },
           UsuarioReg: {
             type: String
@@ -623,17 +633,17 @@ const orderSchema = new mongoose.Schema({
         _id: false,
         Activo: {
           type: String,
-          default: "S"
+          "default": "S"
         },
         Borrado: {
           type: String,
-          default: "N"
+          "default": "N"
         },
         detail_row_reg: [{
           _id: false,
           FechaReg: {
             type: Date,
-            default: Date.now
+            "default": Date.now
           },
           UsuarioReg: {
             type: String
@@ -673,17 +683,17 @@ const orderSchema = new mongoose.Schema({
           _id: false,
           Activo: {
             type: String,
-            default: "S"
+            "default": "S"
           },
           Borrado: {
             type: String,
-            default: "N"
+            "default": "N"
           },
           detail_row_reg: [{
             _id: false,
             FechaReg: {
               type: Date,
-              default: Date.now
+              "default": Date.now
             },
             UsuarioReg: {
               type: String
@@ -697,17 +707,17 @@ const orderSchema = new mongoose.Schema({
     _id: false,
     Activo: {
       type: String,
-      default: "S"
+      "default": "S"
     },
     Borrado: {
       type: String,
-      default: "N"
+      "default": "N"
     },
     detail_row_reg: [{
       _id: false,
       FechaReg: {
         type: Date,
-        default: Date.now
+        "default": Date.now
       },
       UsuarioReg: {
         type: String
@@ -717,8 +727,8 @@ const orderSchema = new mongoose.Schema({
 }, {
   versionKey: false
 });
-const dbName = config.DATABASE;
-const dbCluster = config.CLUSTER;
-const conn = obtenerConexion(dbName, dbCluster);
-const model = obtenerModelo('cat_orders', orderSchema, conn, dbName, dbCluster);
-export default model;
+var dbName = _config["default"].DATABASE;
+var dbCluster = _config["default"].CLUSTER;
+var conn = (0, _connectionsFactory["default"])(dbName, dbCluster);
+var model = (0, _modelsFactory["default"])('cat_orders', orderSchema, conn, dbName, dbCluster);
+var _default = exports["default"] = model;

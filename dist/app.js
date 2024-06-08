@@ -1,48 +1,55 @@
-import express from 'express';
-import morgan from 'morgan';
-import cors from 'cors';
+"use strict";
+
+var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports["default"] = void 0;
+var _express = _interopRequireDefault(require("express"));
+var _morgan = _interopRequireDefault(require("morgan"));
+var _cors = _interopRequireDefault(require("cors"));
+var _index = _interopRequireDefault(require("./api/pwa/orders/routes/index"));
+var _index2 = _interopRequireDefault(require("./api/pwa/labels/routes/index"));
+var _index3 = _interopRequireDefault(require("./api/pwa/institutes/routes/index"));
+var _index4 = _interopRequireDefault(require("./api/pwa/products/routes/index"));
+var _index5 = _interopRequireDefault(require("./api/pwa/persons/routes/index"));
+var _config = _interopRequireDefault(require("./config/config"));
+var _database = require("./config/database.config");
 // Imports Routes
-import routesOrdersPWA from './api/pwa/orders/routes/index';
-import routesLabelsPWA from './api/pwa/labels/routes/index';
-import routesInstitutesPWA from './api/pwa/institutes/routes/index';
-import routesProductsPWA from './api/pwa/products/routes/index';
-import routesPersonsPWA from './api/pwa/persons/routes/index';
 
 // Config para variables de entorno
-import config from './config/config';
 
 // Declaramos la variable app igualándola a express
-const app = express();
+var app = (0, _express["default"])();
 
 // Establece la conexión a la BD
-import { mongoose } from './config/database.config';
 
 // Settings
-app.set('port', config.PORT);
+app.set('port', _config["default"].PORT);
 
 // Middlewares generales
-app.use(cors());
-app.use(morgan('dev'));
-app.use(express.json());
-app.use(express.urlencoded({
+app.use((0, _cors["default"])());
+app.use((0, _morgan["default"])('dev'));
+app.use(_express["default"].json());
+app.use(_express["default"].urlencoded({
   extended: false
 }));
 
 // Routes
-const api = config.URL_BASE;
-app.get(`${api}`, (req, res) => {
-  res.send(`<h1>RESTful running in root</h1> <p> eCommerce: <b>${api}/api-docs</b> for more information.</p>`);
+var api = _config["default"].URL_BASE;
+app.get("".concat(api), function (req, res) {
+  res.send("<h1>RESTful running in root</h1> <p> eCommerce: <b>".concat(api, "/api-docs</b> for more information.</p>"));
 });
-app.get('/DrFIC', (req, res) => {
-  res.send(`<h1>RESTful running in DrFIC</h1> <p> eCommerce: <b>${api}/api-docs</b> for more information.</p>`);
+app.get('/DrFIC', function (req, res) {
+  res.send("<h1>RESTful running in DrFIC</h1> <p> eCommerce: <b>".concat(api, "/api-docs</b> for more information.</p>"));
 });
 
 // Routes
-routesOrdersPWA(app);
-routesLabelsPWA(app);
-routesInstitutesPWA(app);
-routesProductsPWA(app);
-routesPersonsPWA(app);
+(0, _index["default"])(app);
+(0, _index2["default"])(app);
+(0, _index3["default"])(app);
+(0, _index4["default"])(app);
+(0, _index5["default"])(app);
 
 // Export App
-export default app;
+var _default = exports["default"] = app;

@@ -1,11 +1,14 @@
-import mongoose from "mongoose";
-import config from "./config";
-const crearModelo = (nombre, schema, conexion) => {
+"use strict";
+
+var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
+var _mongoose = _interopRequireDefault(require("mongoose"));
+var _config = _interopRequireDefault(require("./config"));
+var crearModelo = function crearModelo(nombre, schema, conexion) {
   return conexion.model(nombre, schema, nombre);
 };
-const obtenerModelo = (nombre, schema, conexion, dbName, dbCluster) => {
-  let message = '';
-  let model;
+var obtenerModelo = function obtenerModelo(nombre, schema, conexion, dbName, dbCluster) {
+  var message = '';
+  var model;
   if (conexion.modelNames().includes(nombre)) {
     model = conexion.model(nombre);
     message = dbName + '.' + nombre;

@@ -1,18 +1,22 @@
-import mongoose from "mongoose";
-import config from "./config";
-const options = {
+"use strict";
+
+var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
+var _mongoose = _interopRequireDefault(require("mongoose"));
+var _config = _interopRequireDefault(require("./config"));
+var options = {
   // useNewUrlParser: true,
   // useUnifiedTopology: true,
   autoIndex: true
 };
-const crearConexion = (dbName, dbCluster) => {
-  const uri = `mongodb+srv://${config.DB_USER}:${config.DB_PASSWORD}@${dbCluster}/${dbName}?retryWrites=true&w=majority`;
-  return mongoose.createConnection(uri, options);
+var crearConexion = function crearConexion(dbName, dbCluster) {
+  var uri = "mongodb+srv://".concat(_config["default"].DB_USER, ":").concat(_config["default"].DB_PASSWORD, "@").concat(dbCluster, "/").concat(dbName, "?retryWrites=true&w=majority");
+  return _mongoose["default"].createConnection(uri, options);
 };
-const obtenerConexion = (dbName, dbCluster) => {
-  let {
-    conexion
-  } = mongoose.connections.filter(conn => conn.name === dbName);
+var obtenerConexion = function obtenerConexion(dbName, dbCluster) {
+  var _mongoose$connections = _mongoose["default"].connections.filter(function (conn) {
+      return conn.name === dbName;
+    }),
+    conexion = _mongoose$connections.conexion;
   if (!conexion) {
     conexion = crearConexion(dbName, dbCluster);
   }

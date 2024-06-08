@@ -1,6 +1,15 @@
-import mongoose, { ClientSession, ConnectOptions, Model, Document } from 'mongoose';
-export const BITACORA = () => {
-  const bitacora = {
+"use strict";
+
+var _typeof = require("@babel/runtime/helpers/typeof");
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.TRANSOPTIONS = exports.OK = exports.FAIL = exports.DATA = exports.BITACORA = exports.AddMSG = void 0;
+var _mongoose = _interopRequireWildcard(require("mongoose"));
+function _getRequireWildcardCache(e) { if ("function" != typeof WeakMap) return null; var r = new WeakMap(), t = new WeakMap(); return (_getRequireWildcardCache = function _getRequireWildcardCache(e) { return e ? t : r; })(e); }
+function _interopRequireWildcard(e, r) { if (!r && e && e.__esModule) return e; if (null === e || "object" != _typeof(e) && "function" != typeof e) return { "default": e }; var t = _getRequireWildcardCache(r); if (t && t.has(e)) return t.get(e); var n = { __proto__: null }, a = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var u in e) if ("default" !== u && {}.hasOwnProperty.call(e, u)) { var i = a ? Object.getOwnPropertyDescriptor(e, u) : null; i && (i.get || i.set) ? Object.defineProperty(n, u, i) : n[u] = e[u]; } return n["default"] = e, t && t.set(e, n), n; }
+var BITACORA = exports.BITACORA = function BITACORA() {
+  var bitacora = {
     success: null,
     status: 0,
     process: '',
@@ -12,13 +21,13 @@ export const BITACORA = () => {
     countMsgUSR: 0,
     countMsgDEV: 0,
     data: [],
-    session: ClientSession,
+    session: _mongoose.ClientSession,
     loggedUser: ''
   };
   return bitacora;
 };
-export const DATA = () => {
-  const data = {
+var DATA = exports.DATA = function DATA() {
+  var data = {
     success: false,
     status: 0,
     process: '',
@@ -72,7 +81,9 @@ export const DATA = () => {
     return bitacora;
 }; */
 
-export const AddMSG = (bitacora, data, tipo, status = 500, principal = false) => {
+var AddMSG = exports.AddMSG = function AddMSG(bitacora, data, tipo) {
+  var status = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : 500;
+  var principal = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : false;
   if (tipo === 'OK') {
     data.success = data.success || true;
     bitacora.success = data.sucess || true;
@@ -110,7 +121,7 @@ export const AddMSG = (bitacora, data, tipo, status = 500, principal = false) =>
   bitacora.countData++;
   return bitacora;
 };
-export const OK = bitacora => {
+var OK = exports.OK = function OK(bitacora) {
   return {
     success: bitacora.success || true,
     status: bitacora.status || 500,
@@ -127,7 +138,7 @@ export const OK = bitacora => {
     loggedUser: bitacora.loggedUser || 'No se especificio el Usuario Logueado'
   };
 };
-export const FAIL = bitacora => {
+var FAIL = exports.FAIL = function FAIL(bitacora) {
   return {
     success: bitacora.success || false,
     status: bitacora.status || 500,
@@ -144,8 +155,8 @@ export const FAIL = bitacora => {
     loggedUser: bitacora.loggedUser || 'No se especificio el Usuario Logueado'
   };
 };
-export const TRANSOPTIONS = () => {
-  const transactionOptions = {
+var TRANSOPTIONS = exports.TRANSOPTIONS = function TRANSOPTIONS() {
+  var transactionOptions = {
     readPreference: 'primary',
     //readPreference: 'secondary',
     readConcern: {
