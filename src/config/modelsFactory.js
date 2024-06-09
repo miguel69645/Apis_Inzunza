@@ -5,7 +5,7 @@ const crearModelo = (nombre, schema, conexion) => {
     return conexion.model(nombre, schema, nombre)
 }
 
-const obtenerModelo = (nombre, schema, conexion, dbName, dbCluster) => {
+const obtenerModelo = (nombre, schema, conexion, dbName) => {
     let message = '';
     let model;
 

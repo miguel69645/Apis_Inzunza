@@ -7,17 +7,17 @@ const options = {
     autoIndex: true
 };
 
-const crearConexion = (dbName, dbCluster) => {
-    const uri = `mongodb+srv://${config.DB_USER}:${config.DB_PASSWORD}@${dbCluster}/${dbName}?retryWrites=true&w=majority`;
+const crearConexion = (dbName) => {
+    const uri = `mongodb+srv://manu:Tec12345678@cluster0.tvgq5vw.mongodb.net/`;
 
     return mongoose.createConnection(uri, options);
 }
 
-const obtenerConexion = (dbName, dbCluster) => {
+const obtenerConexion = (dbName) => {
     let {conexion} = mongoose.connections.filter(conn => conn.name === dbName);
 
     if (!conexion) {
-        conexion = crearConexion(dbName, dbCluster);
+        conexion = crearConexion(dbName);
     }
 
     return conexion;
